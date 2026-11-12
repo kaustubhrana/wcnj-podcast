@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050608" />
+  <meta name="description" content="A special conversation with Capt Kaustubh Rana and Wing Commander Nimish Jain. Premieres 13 November 2026 at 6 PM IST." />
+  <title>Capt Kaustubh Rana × Wg Cdr Nimish Jain | Siachen</title>
+  <style>
+    :root {
+      --bg: #050608;
+      --panel: rgba(14, 17, 22, .82);
+      --text: #f3f4f5;
+      --muted: #a3aab4;
+      --line: rgba(226, 232, 240, .16);
+      --accent: #d7e6f5;
+      --red: #ff3434;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55; overflow-x: hidden;
+    }
+    a { color: inherit; }
+    .sky {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 38%, rgba(37,49,65,.20), transparent 48%),
+        linear-gradient(180deg, #050608 0%, #080b10 58%, #050608 100%);
+    }
+    .stars, .stars::before, .stars::after {
+      position: fixed; inset: 0; content: ""; pointer-events: none; z-index: -1;
+      background-image:
+        radial-gradient(1px 1px at 8% 14%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 19% 36%, #cbd5e1 98%, transparent),
+        radial-gradient(1.5px 1.5px at 31% 12%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 47% 27%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 59% 9%, #dbeafe 98%, transparent),
+        radial-gradient(1.5px 1.5px at 72% 31%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 86% 16%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 93% 42%, #dbeafe 98%, transparent),
+        radial-gradient(1px 1px at 14% 63%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 38% 57%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 67% 61%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 81% 70%, #fff 98%, transparent);
+      background-size: 420px 360px;
+      opacity: .55;
+    }
+    .stars::before { transform: translate(80px, 110px); opacity: .35; background-size: 310px 290px; }
+    .stars::after { transform: translate(-60px, 30px); opacity: .25; background-size: 520px 430px; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+      font-size: 12px; letter-spacing: .17em; text-transform: uppercase; color: var(--muted);
+    }
+    .mark { display:flex; align-items:center; gap:10px; color:var(--text); font-weight:700; }
+    .mark-dot { width:7px; height:7px; border-radius:50%; background:#e7edf4; box-shadow:0 0 14px #dcecff; }
+    .eyebrow { color: #b9c8d8; text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 700; }
+    main { padding-bottom: 60px; }
+    .hero { padding: 66px 0 0; text-align: center; position: relative; }
+    h1 {
+      font-size: clamp(36px, 6vw, 76px); line-height: .99; letter-spacing: -.055em;
+      font-weight: 600; margin: 18px auto 16px; max-width: 900px;
+    }
+    h1 span { color: #aab9ca; font-weight: 400; }
+    .intro { max-width: 680px; margin: 0 auto; color: #b8c0ca; font-size: clamp(15px, 2vw, 18px); }
+    .channel-card {
+      margin: 42px auto 0; max-width: 760px; text-align: left; position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr auto; gap: 22px; align-items: center;
+      padding: 25px 28px; border: 1px solid rgba(220,232,245,.25); border-radius: 18px;
+      background: linear-gradient(120deg, rgba(23,29,38,.94), rgba(8,10,14,.9));
+      box-shadow: 0 20px 80px rgba(0,0,0,.35);
+    }
+    .channel-card::after {
+      content:""; position:absolute; width:260px; height:260px; right:100px; top:-180px;
+      border-radius:50%; background:rgba(210,228,248,.08); filter:blur(20px); pointer-events:none;
+    }
+    .channel-info { display:flex; align-items:center; gap:17px; min-width:0; }
+    .yt-mark {
+      width:58px; height:42px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center;
+      background:#ff0033; box-shadow:0 7px 24px rgba(255,0,51,.22);
+    }
+    .yt-mark svg { width:24px; height:24px; fill:white; }
+    .channel-name { font-size:19px; font-weight:650; letter-spacing:-.02em; }
+    .channel-sub { color:var(--muted); font-size:13px; margin-top:3px; }
+    .btn {
+      border:1px solid rgba(255,255,255,.22); padding:12px 18px; border-radius:999px;
+      text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:9px;
+      font-size:13px; font-weight:700; transition:transform .2s, background .2s, border-color .2s;
+      cursor:pointer; white-space:nowrap;
+    }
+    .btn:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.6); }
+    .btn-primary { background:#f3f5f7; color:#080a0d; border-color:#f3f5f7; }
+    .btn-primary:hover { background:#dce7f2; }
+    .btn-quiet { background:rgba(255,255,255,.04); color:var(--text); }
+    .mountain {
+      width:100%; max-width:1100px; height:auto; margin: 35px auto -2px; display:block;
+      opacity:.9; filter: drop-shadow(0 0 12px rgba(210,225,240,.08));
+    }
+    .event { max-width:860px; margin:-3px auto 0; padding:34px 24px 30px; text-align:center;
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .event-date { font-size:clamp(22px, 3.3vw, 34px); font-weight:550; letter-spacing:-.03em; margin:8px 0 2px; }
+    .event-time { color:#b7c1cc; font-size:14px; letter-spacing:.12em; text-transform:uppercase; }
+    .countdown { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:580px; margin:28px auto 25px; }
+    .timebox { padding:16px 8px 13px; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.025); }
+    .number { display:block; font-size:clamp(28px,5vw,42px); font-weight:550; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+    .unit { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.18em; }
+    .event-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:11px; }
+    .note { color:#929ba7; font-size:12px; margin-top:14px; }
+    .story { max-width:760px; margin:64px auto 0; text-align:center; }
+    .story h2 { font-size:clamp(24px,3.5vw,36px); line-height:1.1; letter-spacing:-.04em; font-weight:550; margin:12px 0 16px; }
+    .story p { color:#aeb7c2; font-size:15px; }
+    .meta { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:24px; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:7px 12px; font-size:11px; color:#bac4cf; letter-spacing:.04em; }
+    footer { border-top:1px solid var(--line); padding:22px 0 30px; color:#7f8995; font-size:11px; letter-spacing:.06em; text-align:center; }
+    @media (max-width:650px) {
+      .wrap { width:min(var(--max), calc(100% - 28px)); }
+      header { font-size:10px; }
+      .hero { padding-top:48px; }
+      .channel-card { grid-template-columns:1fr; padding:20px; gap:18px; }
+      .channel-card .btn { width:100%; }
+      .channel-name { font-size:17px; }
+      .countdown { gap:7px; }
+      .timebox { padding:13px 4px 11px; }
+      .unit { font-size:9px; letter-spacing:.1em; }
+      .event { padding-left:8px; padding-right:8px; }
+      .mountain { margin-top:26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky"></div><div class="stars"></div>
+  <div class="wrap">
+    <header>
+      <div class="mark"><span class="mark-dot"></span> CAPT KAUSTUBH RANA</div>
+      <div>Special Podcast Premiere · 2026</div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">A conversation beyond the uniform</div>
+        <h1>147 DAYS<br><span>AT</span> SIACHEN.</h1>
+        <p class="intro">What does it take to stay 57 days beyond the planned tenure at the world’s highest battlefield? An unfiltered conversation on Siachen, survival, service, and the journey from an NCC cadet to an Army veteran.</p>
+
+        <div class="channel-card" aria-label="Wing Commander Nimish Jain YouTube channel">
+          <div class="channel-info">
+            <div class="yt-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
+            </div>
+            <div>
+              <div class="eyebrow">Watch & subscribe</div>
+              <div class="channel-name">Wing Commander Nimish Jain</div>
+              <div class="channel-sub">Veteran-led conversations · YouTube channel</div>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="https://www.youtube.com/@NimishJain-i8v?sub_confirmation=1" target="_blank" rel="noopener">
+            <span>▶</span> Subscribe on YouTube
+          </a>
+        </div>
+      </section>
+
+      <svg class="mountain" viewBox="0 0 1200 420" role="img" aria-label="Minimal line illustration of a glaciated Himalayan mountain range">
+        <defs>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f6fa" stop-opacity=".9"/><stop offset="1" stop-color="#aab7c7" stop-opacity=".2"/></linearGradient>
+        </defs>
+        <g fill="none" stroke="url(#fade)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 290 70 250 120 270 205 185 260 240 330 215 405 110 465 175 520 135 600 22 670 112 720 145 780 95 850 175 900 210 960 155 1025 220 1080 205 1200 285"/>
+          <path d="M0 315 90 280 145 295 205 220 255 270 330 248 405 145 462 204 520 165 600 48 668 139 720 173 780 123 850 202 910 236 960 184 1025 246 1080 232 1200 310"/>
+          <path d="M0 350 90 325 180 340 260 290 330 310 405 250 475 270 545 220 600 95 655 210 725 250 780 180 845 265 915 295 980 250 1050 290 1120 275 1200 330"/>
+          <path d="M205 185 220 235 260 270 245 225 260 240 270 280 305 300 M405 110 430 155 465 175 445 130 462 204 490 230 M600 22 585 88 600 125 620 82 670 112 650 150 720 145 M780 95 770 150 850 175 810 130 820 195 M960 155 950 205 1025 220 990 185"/>
+          <path d="M390 260 455 215 510 255 560 285 600 265 650 290 720 265 775 285 840 260 900 300 M70 250 100 300 150 315 M960 155 945 235 900 270"/>
+          <path d="M600 22 610 80 642 116 625 84 670 112 M405 110 415 165 445 195 M780 95 800 155 850 202"/>
+          <path d="M480 275 520 300 560 312 600 295 640 320 700 300 755 315 815 295" stroke-opacity=".55"/>
+        </g>
+        <g fill="#e9eef5" opacity=".7">
+          <circle cx="205" cy="185" r="2"/><circle cx="405" cy="110" r="2"/><circle cx="600" cy="22" r="2.3"/><circle cx="780" cy="95" r="2"/><circle cx="960" cy="155" r="2"/>
+        </g>
+      </svg>
+
+      <section class="event" id="premiere">
+        <div class="eyebrow">Set your reminder</div>
+        <div class="event-date">13 November 2026</div>
+        <div class="event-time">Friday · 6:00 PM Indian Standard Time (IST)</div>
+        <div class="countdown" aria-live="polite">
+          <div class="timebox"><span class="number" id="days">--</span><span class="unit">Days</span></div>
+          <div class="timebox"><span class="number" id="hours">--</span><span class="unit">Hours</span></div>
+          <div class="timebox"><span class="number" id="minutes">--</span><span class="unit">Minutes</span></div>
+          <div class="timebox"><span class="number" id="seconds">--</span><span class="unit">Seconds</span></div>
+        </div>
+        <div class="event-actions">
+          <button class="btn btn-primary" id="calendarBtn" type="button">＋ Add to my calendar</button>
+          <a class="btn btn-quiet" href="https://www.youtube.com/@NimishJain-i8v" target="_blank" rel="noopener">Open YouTube channel ↗</a>
+        </div>
+        <p class="note">The calendar file opens in your device’s calendar app, where you can save the event and reminder.</p>
+      </section>
+
+      <section class="story">
+        <div class="eyebrow">The conversation</div>
+        <h2>From a wish for the cold<br>to the realities of the glacier.</h2>
+        <p>Hosted by Air Veteran Wing Commander Nimish Jain, this episode traces Capt Kaustubh Rana’s journey through the Indian Army—from NCC to the Dogra Regiment, and into one of the harshest environments on Earth.</p>
+        <div class="meta">
+          <span class="pill">SIACHEN · 147 DAYS</span>
+          <span class="pill">LIFE IN UNIFORM</span>
+          <span class="pill">DREAMS · DESTINY · DETERMINATION</span>
+        </div>
+      </section>
+    </main>
+    <footer>CAPT KAUSTUBH RANA · JAI HIND</footer>
+  </div>
+
+  <script>
+    // 13 November 2026, 18:00 IST = 13 November 2026, 12:30 UTC.
+    const premiere = new Date("2026-11-13T12:30:00Z").getTime();
+    const fields = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
+    function updateCountdown() {
+      const remaining = premiere - Date.now();
+      if (remaining <= 0) {
+        Object.values(fields).forEach(el => el.textContent = "00");
+        document.querySelector(".event-time").textContent = "THE PREMIERE IS LIVE / HAS STARTED";
+        return;
+      }
+      const total = Math.floor(remaining / 1000);
+      fields.days.textContent = String(Math.floor(total / 86400)).padStart(2, "0");
+      fields.hours.textContent = String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
+      fields.minutes.textContent = String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+      fields.seconds.textContent = String(total % 60).padStart(2, "0");
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    document.getElementById("calendarBtn").addEventListener("click", () => {
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Capt Kaustubh Rana//Podcast Premiere//EN",
+        "CALSCALE:GREGORIAN",
+        "BEGIN:VEVENT",
+        "UID:capt-kaustubh-rana-nimish-jain-20261113T123000Z@captkaus",
+        "DTSTAMP:20261112T000000Z",
+        "DTSTART:20261113T123000Z",
+        "DTEND:20261113T140000Z",
+        "SUMMARY:Capt Kaustubh Rana on Wing Commander Nimish Jain's Podcast",
+        "DESCRIPTION:Podcast premiere with Capt Kaustubh Rana on the YouTube channel of Wing Commander Nimish Jain. Subscribe and watch: https://www.youtube.com/@NimishJain-i8v",
+        "URL:https://www.youtube.com/@NimishJain-i8v",
+        "BEGIN:VALARM",
+        "TRIGGER:-PT30M",
+        "ACTION:DISPLAY",
+        "DESCRIPTION:Podcast premiere begins in 30 minutes",
+        "END:VALARM",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\\r\\n");
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "capt-kaustubh-rana-podcast-premiere.ics";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    });
+  </script>
+</body>
+</html>
