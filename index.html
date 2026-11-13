@@ -105,6 +105,25 @@
       border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
     .event-date { font-size:clamp(22px, 3.3vw, 34px); font-weight:550; letter-spacing:-.03em; margin:8px 0 2px; }
     .event-time { color:#b7c1cc; font-size:14px; letter-spacing:.12em; text-transform:uppercase; }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      margin: 28px auto 10px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(220,232,245,.25);
+      background: #000;
+    }
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
     .countdown { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:580px; margin:28px auto 25px; }
     .timebox { padding:16px 8px 13px; border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.025); }
     .number { display:block; font-size:clamp(28px,5vw,42px); font-weight:550; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
@@ -146,29 +165,20 @@
         <p class="intro">What does it take to stay 57 days beyond the planned tenure at the world’s highest battlefield? An unfiltered conversation on the journey from an NCC cadet to an Army veteran.</p>
 
       <section class="event" id="premiere">
-        <div class="eyebrow">Set your reminder</div>
-        <div class="event-date">13 November 2026</div>
-        <div class="event-time">Friday · 6:00 PM Indian Standard Time (IST)</div>
-        <div class="countdown" aria-live="polite">
-          <div class="timebox"><span class="number" id="days">--</span><span class="unit">Days</span></div>
-          <div class="timebox"><span class="number" id="hours">--</span><span class="unit">Hours</span></div>
-          <div class="timebox"><span class="number" id="minutes">--</span><span class="unit">Minutes</span></div>
-          <div class="timebox"><span class="number" id="seconds">--</span><span class="unit">Seconds</span></div>
+        <div class="eyebrow">NOW PREMIERING</div>
+        <div class="event-date">147 DAYS AT SIACHEN</div>
+        <div class="event-time">
+          Capt Kaustubh Rana × Wg Cdr Nimish Jain
         </div>
-        <div class="channel-card" aria-label="Wing Commander Nimish Jain YouTube channel">
-          <div class="channel-info">
-            <div class="yt-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
-            </div>
-            <div>
-              <div class="eyebrow">Watch & subscribe</div>
-              <div class="channel-name">Wing Commander Nimish Jain</div>
-              <div class="channel-sub">YouTube channel Hosted by an Indian Air Force Veteran</div>
-            </div>
-          </div>
-          <a class="btn btn-primary" href="https://www.youtube.com/@NimishJain-i8v?sub_confirmation=1" target="_blank" rel="noopener">
-            <span>▶</span> Subscribe on YouTube
-          </a>
+
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/Zhb85clW5dY?rel=0"
+            title="Capt Kaustubh Rana × Wing Commander Nimish Jain Podcast"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
       </section>
 
@@ -199,63 +209,6 @@
     <footer>CAPT KAUSTUBH RANA · JAI HIND</footer>
   </div>
 
-  <script>
-    // 13 November 2026, 18:00 IST = 13 November 2026, 12:30 UTC.
-    const premiere = new Date("2026-11-13T12:30:00Z").getTime();
-    const fields = {
-      days: document.getElementById("days"),
-      hours: document.getElementById("hours"),
-      minutes: document.getElementById("minutes"),
-      seconds: document.getElementById("seconds")
-    };
-    function updateCountdown() {
-      const remaining = premiere - Date.now();
-      if (remaining <= 0) {
-        Object.values(fields).forEach(el => el.textContent = "00");
-        document.querySelector(".event-time").textContent = "THE PREMIERE IS LIVE / HAS STARTED";
-        return;
-      }
-      const total = Math.floor(remaining / 1000);
-      fields.days.textContent = String(Math.floor(total / 86400)).padStart(2, "0");
-      fields.hours.textContent = String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
-      fields.minutes.textContent = String(Math.floor((total % 3600) / 60)).padStart(2, "0");
-      fields.seconds.textContent = String(total % 60).padStart(2, "0");
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
 
-    document.getElementById("calendarBtn").addEventListener("click", () => {
-      const ics = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Capt Kaustubh Rana//Podcast Premiere//EN",
-        "CALSCALE:GREGORIAN",
-        "BEGIN:VEVENT",
-        "UID:capt-kaustubh-rana-nimish-jain-20261113T123000Z@captkaus",
-        "DTSTAMP:20261112T000000Z",
-        "DTSTART:20261113T123000Z",
-        "DTEND:20261113T140000Z",
-        "SUMMARY:Capt Kaustubh Rana on Wing Commander Nimish Jain's Podcast",
-        "DESCRIPTION:Podcast premiere with Capt Kaustubh Rana on the YouTube channel of Wing Commander Nimish Jain. Subscribe and watch: https://www.youtube.com/@NimishJain-i8v",
-        "URL:https://www.youtube.com/@NimishJain-i8v",
-        "BEGIN:VALARM",
-        "TRIGGER:-PT30M",
-        "ACTION:DISPLAY",
-        "DESCRIPTION:Podcast premiere begins in 30 minutes",
-        "END:VALARM",
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\\r\\n");
-      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "capt-kaustubh-rana-podcast-premiere.ics";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1500);
-    });
-  </script>
 </body>
 </html>
